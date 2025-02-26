@@ -2,7 +2,7 @@ using K6.Hosting.Aspire;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
-var api = builder.AddProject<Projects.BasicK6Sample_ApiService>("basick6sample-apiservice")
+var api = builder.AddProject<Projects.BasicK6Sample_ApiService>("api-service")
     .WithExternalHttpEndpoints();
 
 var k6 = builder.AddK6("k6", options =>
@@ -13,4 +13,4 @@ var k6 = builder.AddK6("k6", options =>
     .WaitFor(api)
     .WithApiEndpoint(api);
 
-builder.Build().Run();
+await builder.Build().RunAsync();
