@@ -38,16 +38,16 @@ jobs:
 
     # Create the NuGet packages for all projects
     - name: Pack Core Project
-      run: dotnet pack src/K6.Hosting.Core/K6.Hosting.Core.csproj --configuration Release --output ${{ env.NuGetDirectory }} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:MinVerTag=$(git describe --tags --abbrev=0 2>$null || echo "0.1.0")
+      run: dotnet pack src/K6.Hosting.Core/K6.Hosting.Core.csproj --configuration Release --output ${{ env.NuGetDirectory }} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:MinVerTag=$(git describe --tags)
       
     - name: Pack Aspire Project
-      run: dotnet pack src/K6.Hosting.Aspire/K6.Hosting.Aspire.csproj --configuration Release --output ${{ env.NuGetDirectory }} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:MinVerTag=$(git describe --tags --abbrev=0 2>$null || echo "0.1.0")
+      run: dotnet pack src/K6.Hosting.Aspire/K6.Hosting.Aspire.csproj --configuration Release --output ${{ env.NuGetDirectory }} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:MinVerTag=$(git describe --tags)
       
     - name: Pack Grafana Project
-      run: dotnet pack src/K6.Hosting.Outputs.Grafana/K6.Hosting.Outputs.Grafana.csproj --configuration Release --output ${{ env.NuGetDirectory }} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:MinVerTag=$(git describe --tags --abbrev=0 2>$null || echo "0.1.0")
+      run: dotnet pack src/K6.Hosting.Outputs.Grafana/K6.Hosting.Outputs.Grafana.csproj --configuration Release --output ${{ env.NuGetDirectory }} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:MinVerTag=$(git describe --tags)
       
     - name: Pack InfluxDB Project
-      run: dotnet pack src/K6.Hosting.Outputs.InfluxDB/K6.Hosting.Outputs.InfluxDB.csproj --configuration Release --output ${{ env.NuGetDirectory }} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:MinVerTag=$(git describe --tags --abbrev=0 2>$null || echo "0.1.0")
+      run: dotnet pack src/K6.Hosting.Outputs.InfluxDB/K6.Hosting.Outputs.InfluxDB.csproj --configuration Release --output ${{ env.NuGetDirectory }} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:MinVerTag=$(git describe --tags)
   
     # Step to prepare the artifacts by copying *.nupkg and *.snpkg files to a temporary directory
     - name: Prepare Artifacts
