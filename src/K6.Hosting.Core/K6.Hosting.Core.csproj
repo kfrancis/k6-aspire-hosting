@@ -4,6 +4,27 @@
 
 	<PropertyGroup>
 		<TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+		<EnablePackageValidation>true</EnablePackageValidation>
+		<WarningsAsErrors>Nullable</WarningsAsErrors>
+		<AssemblyName>CSS.K6.Hosting.Core</AssemblyName>
+		<Authors>kfrancis</Authors>
+		<Company>Clinical Support Systems</Company>
+		<PackageId>CSS.K6.Hosting.Core</PackageId>
+		<PackageTags>k6;load-testing;performance-testing;aspire;core</PackageTags>
+		<GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
+		<GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
+		<GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+		<GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+		<GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+		<GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
+		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<RepositoryType>git</RepositoryType>
+		<Description>Core components for integrating Grafana k6 load testing into .NET Aspire applications.</Description>
+		<RepositoryUrl>https://github.com/kfrancis/k6-aspire-hosting</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/kfrancis/k6-aspire-hosting</PackageProjectUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -16,6 +37,10 @@
 	    <PrivateAssets>all</PrivateAssets>
 	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="README.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
 
 </Project>

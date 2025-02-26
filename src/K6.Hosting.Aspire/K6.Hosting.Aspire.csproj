@@ -10,7 +10,7 @@
 		<Authors>kfrancis</Authors>
 		<Company>Clinical Support Systems</Company>
 		<PackageId>CSS.K6.Hosting.Aspire</PackageId>
-		<PackageTags>asp.net;asp.net mvc;boilerplate;application framework;web framework;framework;domain driven design;postmark;email</PackageTags>
+		<PackageTags>k6;load-testing;performance-testing;aspire;.net-aspire;devops</PackageTags>
 		<GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
 		<GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
 		<GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
@@ -21,7 +21,7 @@
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<RepositoryType>git</RepositoryType>
-		<Description>A seamless integration module that enables Postmark transactional email delivery services for AspNetZero and ABP Framework applications.</Description>
+		<Description>Integration for running Grafana k6 load tests within .NET Aspire applications.</Description>
 		<RepositoryUrl>https://github.com/kfrancis/k6-aspire-hosting</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/kfrancis/k6-aspire-hosting</PackageProjectUrl>
 		<!-- Include symbol files (*.pdb) in the built .nupkg -->

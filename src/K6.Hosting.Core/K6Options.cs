@@ -4,7 +4,10 @@ public class K6Options
 {
     public string ScriptDirectory { get; set; } = string.Empty;
     public string ScriptFileName { get; set; } = string.Empty;
-    public string ImageRegistry { get; set; }
-    public string ImageName { get; set; }
-    public string ImageTag { get; set; }
+    public ContainerImageConfig ImageConfig => new()
+    {
+        Registry = "docker.io",
+        Image = "grafana/k6",
+        Tag = "latest"
+    };
 }

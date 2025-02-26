@@ -94,8 +94,8 @@ namespace K6.Hosting.Outputs.Grafana
             // Generate the configuration with the connection string expression
             // rather than trying to resolve it immediately
             var config = dataSourceProvider.GenerateGrafanaDataSourceConfig(
-                grafanaEndpoint.Property(EndpointProperty.Host).ToString(),
-                int.Parse(grafanaEndpoint.Property(EndpointProperty.Port).ToString())
+                grafanaEndpoint.Property(EndpointProperty.Host).ToString() ?? "localhost",
+                int.Parse(grafanaEndpoint.Property(EndpointProperty.Port)?.ToString() ?? "3000")
             );
 
             File.WriteAllText(configFile, config);

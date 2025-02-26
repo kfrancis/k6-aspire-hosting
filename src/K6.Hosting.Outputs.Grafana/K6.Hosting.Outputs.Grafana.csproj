@@ -4,6 +4,27 @@
 
 	<PropertyGroup>
 		<TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+		<EnablePackageValidation>true</EnablePackageValidation>
+		<WarningsAsErrors>Nullable</WarningsAsErrors>
+		<AssemblyName>CSS.K6.Hosting.Outputs.Grafana</AssemblyName>
+		<Authors>kfrancis</Authors>
+		<Company>Clinical Support Systems</Company>
+		<PackageId>CSS.K6.Hosting.Outputs.Grafana</PackageId>
+		<PackageTags>k6;load-testing;grafana;dashboard;visualization;aspire;performance-testing</PackageTags>
+		<GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
+		<GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
+		<GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+		<GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+		<GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+		<GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
+		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<RepositoryType>git</RepositoryType>
+		<Description>Grafana dashboard integration for visualizing k6 load test results in .NET Aspire applications.</Description>
+		<RepositoryUrl>https://github.com/kfrancis/k6-aspire-hosting</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/kfrancis/k6-aspire-hosting</PackageProjectUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -23,6 +44,10 @@
 	    <PrivateAssets>all</PrivateAssets>
 	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="README.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
 
 </Project>

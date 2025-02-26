@@ -4,7 +4,7 @@ namespace K6.Hosting.Outputs.InfluxDB;
 
 public class InfluxDbOptions
 {
-    public string ConnectionString { get; set; }
+    public string? ConnectionString { get; set; }
     public string? ResourceName { get; internal set; }
 
     public ContainerImageConfig ImageConfig => new()

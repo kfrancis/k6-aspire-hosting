@@ -26,12 +26,7 @@ public static class K6AspireExtensions
     public static IResourceBuilder<K6Resource> AddK6(this IDistributedApplicationBuilder builder, string name,
         Action<K6Options>? configure = null)
     {
-        var options = new K6Options()
-        {
-            ImageRegistry = DefaultImages.K6.Registry,
-            ImageName = DefaultImages.K6.Image,
-            ImageTag = DefaultImages.K6.Tag
-        };
+        var options = new K6Options();
 
         // Allow caller to configure
         configure?.Invoke(options);
@@ -54,9 +49,9 @@ public static class K6AspireExtensions
 
         // let's use the k6 docker image here
         var resourceBuilder = builder.AddResource(resource)
-            .WithImage(options.ImageName)
-            .WithImageRegistry(options.ImageRegistry)
-            .WithImageTag(options.ImageTag)
+            .WithImage(options.ImageConfig.Image)
+            .WithImageRegistry(options.ImageConfig.Registry)
+            .WithImageTag(options.ImageConfig.Tag)
             .WithEnvironment("K6_INSECURE_SKIP_TLS_VERIFY", "true")
             .WithEndpoint(0, K6Port, name: "k6-api")
             .WithArgs("run", $"/scripts/{scriptFileName}")
