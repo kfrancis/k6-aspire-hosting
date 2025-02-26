@@ -88,7 +88,7 @@ jobs:
         run: |
           foreach($file in (Get-ChildItem "${{ env.NuGetDirectory }}/*.nupkg")) {
               Write-Host "Validating package: $file"
-              meziantou.validate-nuget-package $file --excluded-rule-ids MEZIANTOU0013,MEZIANTOU0018
+              meziantou.validate-nuget-package $file --excluded-rules IconMustBeSet
           }
 
   run_test:
