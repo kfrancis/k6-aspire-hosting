@@ -1,0 +1,111 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35806.99
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "K6.Hosting.Core", "src\K6.Hosting.Core\K6.Hosting.Core.csproj", "{9F30ABFB-57D8-408D-8F3F-E6D2FD6ADE39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "K6.Hosting.Aspire", "src\K6.Hosting.Aspire\K6.Hosting.Aspire.csproj", "{54A61784-2646-4F8F-BBCD-CEC43265A5BC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		common.props = common.props
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "hosting", "hosting", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "output", "output", "{F818D4B7-F200-4EF6-8A5D-4AB2E6AD222D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "K6.Hosting.Outputs.InfluxDB", "src\K6.Hosting.Outputs.InfluxDB\K6.Hosting.Outputs.InfluxDB.csproj", "{00DF7C98-36E0-48E7-925E-4EE870C98ECE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{728AB04E-206D-41CF-8F9D-2D64B2ECC361}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "basic", "basic", "{EA9C96CC-490B-40B4-A527-3C249E1AB50B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicK6Sample.AppHost", "samples\BasicK6Sample\BasicK6Sample.AppHost\BasicK6Sample.AppHost.csproj", "{304D4B9B-AEA9-43B6-B774-6329891D188F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicK6Sample.ApiService", "samples\BasicK6Sample\BasicK6Sample.ApiService\BasicK6Sample.ApiService.csproj", "{89432311-6117-4E73-9FFD-9AC77FD5D911}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicK6Sample.ServiceDefaults", "samples\BasicK6Sample\BasicK6Sample.ServiceDefaults\BasicK6Sample.ServiceDefaults.csproj", "{DFF3F0EA-6425-4E21-9E78-22ABA24A7DEF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "K6.Hosting.Outputs.Grafana", "src\K6.Hosting.Outputs.Grafana\K6.Hosting.Outputs.Grafana.csproj", "{C95021EC-AB8B-4877-BA38-1434FD0DBFDD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "grafana-influxDb", "grafana-influxDb", "{78B644BF-6567-462B-AA86-8D91CA1A4550}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrafanaInfluxDbSample.AppHost", "samples\GrafanaInfluxDbSample\GrafanaInfluxDbSample.AppHost\GrafanaInfluxDbSample.AppHost.csproj", "{1B688EED-120F-46D0-8732-016ACE64102B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrafanaInfluxDbSample.ApiService", "samples\GrafanaInfluxDbSample\GrafanaInfluxDbSample.ApiService\GrafanaInfluxDbSample.ApiService.csproj", "{4A6A678B-C94B-4678-832B-D5CC9A07A017}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrafanaInfluxDbSample.ServiceDefaults", "samples\GrafanaInfluxDbSample\GrafanaInfluxDbSample.ServiceDefaults\GrafanaInfluxDbSample.ServiceDefaults.csproj", "{B7D2886B-EC86-4ED7-B228-B78080E20C65}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9F30ABFB-57D8-408D-8F3F-E6D2FD6ADE39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F30ABFB-57D8-408D-8F3F-E6D2FD6ADE39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F30ABFB-57D8-408D-8F3F-E6D2FD6ADE39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F30ABFB-57D8-408D-8F3F-E6D2FD6ADE39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54A61784-2646-4F8F-BBCD-CEC43265A5BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54A61784-2646-4F8F-BBCD-CEC43265A5BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54A61784-2646-4F8F-BBCD-CEC43265A5BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54A61784-2646-4F8F-BBCD-CEC43265A5BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00DF7C98-36E0-48E7-925E-4EE870C98ECE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00DF7C98-36E0-48E7-925E-4EE870C98ECE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00DF7C98-36E0-48E7-925E-4EE870C98ECE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00DF7C98-36E0-48E7-925E-4EE870C98ECE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{304D4B9B-AEA9-43B6-B774-6329891D188F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{304D4B9B-AEA9-43B6-B774-6329891D188F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{304D4B9B-AEA9-43B6-B774-6329891D188F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{304D4B9B-AEA9-43B6-B774-6329891D188F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89432311-6117-4E73-9FFD-9AC77FD5D911}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89432311-6117-4E73-9FFD-9AC77FD5D911}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89432311-6117-4E73-9FFD-9AC77FD5D911}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89432311-6117-4E73-9FFD-9AC77FD5D911}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFF3F0EA-6425-4E21-9E78-22ABA24A7DEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFF3F0EA-6425-4E21-9E78-22ABA24A7DEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFF3F0EA-6425-4E21-9E78-22ABA24A7DEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFF3F0EA-6425-4E21-9E78-22ABA24A7DEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C95021EC-AB8B-4877-BA38-1434FD0DBFDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C95021EC-AB8B-4877-BA38-1434FD0DBFDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C95021EC-AB8B-4877-BA38-1434FD0DBFDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C95021EC-AB8B-4877-BA38-1434FD0DBFDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B688EED-120F-46D0-8732-016ACE64102B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B688EED-120F-46D0-8732-016ACE64102B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B688EED-120F-46D0-8732-016ACE64102B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B688EED-120F-46D0-8732-016ACE64102B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A6A678B-C94B-4678-832B-D5CC9A07A017}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A6A678B-C94B-4678-832B-D5CC9A07A017}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A6A678B-C94B-4678-832B-D5CC9A07A017}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A6A678B-C94B-4678-832B-D5CC9A07A017}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7D2886B-EC86-4ED7-B228-B78080E20C65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7D2886B-EC86-4ED7-B228-B78080E20C65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7D2886B-EC86-4ED7-B228-B78080E20C65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7D2886B-EC86-4ED7-B228-B78080E20C65}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9F30ABFB-57D8-408D-8F3F-E6D2FD6ADE39} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{54A61784-2646-4F8F-BBCD-CEC43265A5BC} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{00DF7C98-36E0-48E7-925E-4EE870C98ECE} = {F818D4B7-F200-4EF6-8A5D-4AB2E6AD222D}
+		{EA9C96CC-490B-40B4-A527-3C249E1AB50B} = {728AB04E-206D-41CF-8F9D-2D64B2ECC361}
+		{304D4B9B-AEA9-43B6-B774-6329891D188F} = {EA9C96CC-490B-40B4-A527-3C249E1AB50B}
+		{89432311-6117-4E73-9FFD-9AC77FD5D911} = {EA9C96CC-490B-40B4-A527-3C249E1AB50B}
+		{DFF3F0EA-6425-4E21-9E78-22ABA24A7DEF} = {EA9C96CC-490B-40B4-A527-3C249E1AB50B}
+		{C95021EC-AB8B-4877-BA38-1434FD0DBFDD} = {F818D4B7-F200-4EF6-8A5D-4AB2E6AD222D}
+		{78B644BF-6567-462B-AA86-8D91CA1A4550} = {728AB04E-206D-41CF-8F9D-2D64B2ECC361}
+		{1B688EED-120F-46D0-8732-016ACE64102B} = {78B644BF-6567-462B-AA86-8D91CA1A4550}
+		{4A6A678B-C94B-4678-832B-D5CC9A07A017} = {78B644BF-6567-462B-AA86-8D91CA1A4550}
+		{B7D2886B-EC86-4ED7-B228-B78080E20C65} = {78B644BF-6567-462B-AA86-8D91CA1A4550}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {352B1517-5BBD-4055-801E-66B50FA2620B}
+	EndGlobalSection
+EndGlobal

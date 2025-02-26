@@ -1,0 +1,6 @@
+@GrafanaInfluxDbSample.ApiService_HostAddress = http://localhost:5088
+
+GET {{GrafanaInfluxDbSample.ApiService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

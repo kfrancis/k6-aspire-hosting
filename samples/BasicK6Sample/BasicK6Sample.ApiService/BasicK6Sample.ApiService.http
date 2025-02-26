@@ -1,0 +1,6 @@
+@BasicK6Sample.ApiService_HostAddress = http://localhost:5069
+
+GET {{BasicK6Sample.ApiService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
