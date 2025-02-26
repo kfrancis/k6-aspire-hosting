@@ -42,38 +42,58 @@ public static class K6AspireExtensions
         }
 
         // Convert to absolute paths
-        var scriptDir = Path.GetDirectoryName(Path.GetFullPath(options.ScriptDirectory));
+        var scriptDir = Path.GetFullPath(options.ScriptDirectory) ?? "";
         var scriptFileName = Path.GetFileName(options.ScriptFileName);
 
         var resource = new K6Resource(name, options);
 
         // let's use the k6 docker image here
-        var resourceBuilder = builder.AddResource(resource)
+        return builder.AddResource(resource)
             .WithImage(options.ImageConfig.Image)
             .WithImageRegistry(options.ImageConfig.Registry)
             .WithImageTag(options.ImageConfig.Tag)
             .WithEnvironment("K6_INSECURE_SKIP_TLS_VERIFY", "true")
             .WithEndpoint(0, K6Port, name: "k6-api")
+            .WithBindMount(scriptDir, "/scripts")
             .WithArgs("run", $"/scripts/{scriptFileName}")
             .WithExplicitStart();
-
-        if (scriptDir != null)
-            resourceBuilder.WithBindMount(scriptDir, "/scripts");
-
-        return resourceBuilder;
     }
 
     public static IResourceBuilder<K6Resource> WithApiEndpoint(this IResourceBuilder<K6Resource> builder,
         IResourceBuilder<ProjectResource> apiProject)
     {
-        // Get the endpoint reference from the API project
-        var endpointReference = apiProject.GetEndpoint("https");
+        // Get all endpoint annotations for the resource
+        var endpointAnnotations = apiProject.Resource.Annotations
+            .OfType<EndpointAnnotation>()
+            .ToList();
+
+        if (endpointAnnotations.Count == 0)
+        {
+            throw new InvalidOperationException(
+                $"No endpoints found for resource '{apiProject.Resource.Name}'. " +
+                "Make sure the API has at least one endpoint defined.");
+        }
+
+        // Try to find an HTTPS endpoint first, then HTTP, then any endpoint
+        var endpointAnnotation = endpointAnnotations
+                                     .FirstOrDefault(e => e.UriScheme.Equals("https", StringComparison.OrdinalIgnoreCase))
+                                 ?? endpointAnnotations
+                                     .FirstOrDefault(e => e.UriScheme.Equals("http", StringComparison.OrdinalIgnoreCase))
+                                 ?? endpointAnnotations.First();
+
+        // Get the endpoint reference
+        var endpointReference = new EndpointReference(apiProject.Resource, endpointAnnotation.Name);
 
         // Store the endpoint reference in the resource for later use
         builder.Resource.ApiEndpointReference = endpointReference;
 
         // Add a reference to ensure the dependency is tracked
-        builder.WithReference(endpointReference);
+        builder.WithReference(apiProject);
+
+        // Automatically add the API URL as an environment variable APP_HOST
+        // Add environment variables for k6 script to use
+        builder.WithEnvironment("APP_HOST", endpointAnnotation.TargetHost+$":{endpointAnnotation.Port}");
+        builder.WithEnvironment("APP_ENDPOINT_SCHEME", endpointAnnotation.UriScheme);
 
         return builder;
     }
