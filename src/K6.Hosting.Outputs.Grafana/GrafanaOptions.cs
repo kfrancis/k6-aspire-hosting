@@ -2,35 +2,36 @@
 
 namespace K6.Hosting.Outputs.Grafana;
 
+/// <summary>
+///     Options for the Grafana output provider.
+/// </summary>
 public class GrafanaOptions
 {
     /// <summary>
-    /// Name for the Grafana resource
+    ///     Name for the Grafana resource
     /// </summary>
     public string ResourceName { get; set; } = "grafana";
 
     /// <summary>
-    /// Custom path to Grafana dashboards
+    ///     Custom path to Grafana dashboards
     /// </summary>
     public string? DashboardsPath { get; set; }
 
     /// <summary>
-    /// Path to custom datasource config
+    ///     Path to custom datasource config
     /// </summary>
     public string? DatasourceConfigPath { get; set; }
 
     /// <summary>
-    /// Path to custom dashboard config
+    ///     Path to custom dashboard config
     /// </summary>
     public string? DashboardConfigPath { get; set; }
 
     /// <summary>
-    /// Container image config
+    ///     Container image config
     /// </summary>
     public ContainerImageConfig ImageConfig { get; set; } = new()
     {
-        Registry = "docker.io",
-        Image = "grafana/grafana",
-        Tag = "latest"
+        Registry = "docker.io", Image = "grafana/grafana", Tag = "latest"
     };
 }

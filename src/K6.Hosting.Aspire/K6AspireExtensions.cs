@@ -1,11 +1,6 @@
 ﻿using Aspire.Hosting;
 using Aspire.Hosting.ApplicationModel;
 using K6.Hosting.Core;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using System.Diagnostics;
-using System.Net;
-using System.Text;
 
 namespace K6.Hosting.Aspire;
 
@@ -36,6 +31,7 @@ public static class K6AspireExtensions
         {
             throw new ArgumentException("ScriptDirectory must be provided.", nameof(options.ScriptDirectory));
         }
+
         if (string.IsNullOrWhiteSpace(options.ScriptFileName))
         {
             throw new ArgumentException("ScriptFileName must be provided.", nameof(options.ScriptFileName));
@@ -59,6 +55,21 @@ public static class K6AspireExtensions
             .WithExplicitStart();
     }
 
+    /// <summary>
+    ///     Adds a k6 container resource to the <see cref="IDistributedApplicationBuilder" />.
+    /// </summary>
+    /// <param name="builder">
+    ///     The <see cref="IDistributedApplicationBuilder" /> to which the k6 container resource will be
+    /// </param>
+    /// <param name="apiProject">
+    ///     The <see cref="IResourceBuilder{ProjectResource}" /> that represents the project to undergo k6 testing.
+    /// </param>
+    /// <returns>
+    ///     A reference to the <see cref="IResourceBuilder{K6Resource}" /> for further resource configuration.
+    /// </returns>
+    /// <exception cref="InvalidOperationException">
+    ///     Thrown when no endpoints are found for the API project.
+    /// </exception>
     public static IResourceBuilder<K6Resource> WithApiEndpoint(this IResourceBuilder<K6Resource> builder,
         IResourceBuilder<ProjectResource> apiProject)
     {
@@ -76,9 +87,11 @@ public static class K6AspireExtensions
 
         // Try to find an HTTPS endpoint first, then HTTP, then any endpoint
         var endpointAnnotation = endpointAnnotations
-                                     .FirstOrDefault(e => e.UriScheme.Equals("https", StringComparison.OrdinalIgnoreCase))
+                                     .FirstOrDefault(e =>
+                                         e.UriScheme.Equals("https", StringComparison.OrdinalIgnoreCase))
                                  ?? endpointAnnotations
-                                     .FirstOrDefault(e => e.UriScheme.Equals("http", StringComparison.OrdinalIgnoreCase))
+                                     .FirstOrDefault(e =>
+                                         e.UriScheme.Equals("http", StringComparison.OrdinalIgnoreCase))
                                  ?? endpointAnnotations.First();
 
         // Get the endpoint reference
@@ -92,7 +105,7 @@ public static class K6AspireExtensions
 
         // Automatically add the API URL as an environment variable APP_HOST
         // Add environment variables for k6 script to use
-        builder.WithEnvironment("APP_HOST", endpointAnnotation.TargetHost+$":{endpointAnnotation.Port}");
+        builder.WithEnvironment("APP_HOST", endpointAnnotation.TargetHost + $":{endpointAnnotation.Port}");
         builder.WithEnvironment("APP_ENDPOINT_SCHEME", endpointAnnotation.UriScheme);
 
         return builder;

@@ -9,14 +9,20 @@ public static class InfluxDbK6Extensions
     private const int InfluxDbPort = 8086;
 
     /// <summary>
-    /// Adds an InfluxDB resource to the application model
+    ///     Adds an InfluxDB container resource to the <see cref="IDistributedApplicationBuilder" />.
     /// </summary>
-    /// <param name="builder">The distributed application builder</param>
-    /// <param name="name">The name of the resource</param>
-    /// <param name="configure">
-    /// Configure options for the influxDb
+    /// <param name="builder">
+    ///     The <see cref="IDistributedApplicationBuilder" /> to which the InfluxDB container resource will be added.
     /// </param>
-    /// <returns>A resource builder for further configuration</returns>
+    /// <param name="name">
+    ///     The name of the InfluxDB container resource.
+    /// </param>
+    /// <param name="configure">
+    ///     The options to configure the InfluxDB container resource.
+    /// </param>
+    /// <returns>
+    ///     A reference to the <see cref="IResourceBuilder{InfluxDbResource}" /> for further resource configuration.
+    /// </returns>
     public static IResourceBuilder<InfluxDbResource> AddInfluxDb(this IDistributedApplicationBuilder builder,
         string name, Action<InfluxDbOptions>? configure = null)
     {
@@ -32,9 +38,21 @@ public static class InfluxDbK6Extensions
             .WithImageRegistry(options.ImageConfig.Registry)
             .WithImageTag(options.ImageConfig.Tag)
             .WithEnvironment("INFLUXDB_DB", "k6")
-            .WithHttpEndpoint(0, InfluxDbPort, name: InfluxDbResource.PrimaryEndpointName);
+            .WithHttpEndpoint(0, InfluxDbPort, InfluxDbResource.PrimaryEndpointName);
     }
 
+    /// <summary>
+    ///     Adds InfluxDB output to k6 load tests.
+    /// </summary>
+    /// <param name="builder">
+    ///     The <see cref="IResourceBuilder{K6Resource}" /> to which the InfluxDB output will be added.
+    /// </param>
+    /// <param name="options">
+    ///     The options to configure the InfluxDB output.
+    /// </param>
+    /// <returns>
+    ///     The <see cref="IResourceBuilder{K6Resource}" /> with the InfluxDB output added.
+    /// </returns>
     public static IResourceBuilder<K6Resource> WithInfluxDbOutput(
         this IResourceBuilder<K6Resource> builder,
         InfluxDbOptions? options = null)

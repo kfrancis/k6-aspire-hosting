@@ -7,6 +7,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <MinVerTagPrefix>v</MinVerTagPrefix>
+    <DebugType>portable</DebugType>
   </PropertyGroup>
 
 </Project>
