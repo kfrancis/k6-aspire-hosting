@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<Sdk Name="Aspire.AppHost.Sdk" Version="9.0.0" />
 
@@ -20,7 +20,7 @@
 		<ProjectReference Include="..\..\..\src\K6.Hosting.Outputs.Grafana\K6.Hosting.Outputs.Grafana.csproj" IsAspireProjectResource="false" />
 		<ProjectReference Include="..\..\..\src\K6.Hosting.Outputs.InfluxDB\K6.Hosting.Outputs.InfluxDB.csproj" IsAspireProjectResource="false" />
 		<ProjectReference Include="..\GrafanaInfluxDbSample.ApiService\GrafanaInfluxDbSample.ApiService.csproj" />
-		<ProjectReference Include="..\GrafanaInfluxDbSample.ServiceDefaults\GrafanaInfluxDbSample.ServiceDefaults.csproj" />
+		<ProjectReference Include="..\GrafanaInfluxDbSample.ServiceDefaults\GrafanaInfluxDbSample.ServiceDefaults.csproj" IsAspireProjectResource="false" />
 	</ItemGroup>
 
 </Project>

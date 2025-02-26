@@ -13,6 +13,9 @@ public static class InfluxDbK6Extensions
     /// </summary>
     /// <param name="builder">The distributed application builder</param>
     /// <param name="name">The name of the resource</param>
+    /// <param name="configure">
+    /// Configure options for the influxDb
+    /// </param>
     /// <returns>A resource builder for further configuration</returns>
     public static IResourceBuilder<InfluxDbResource> AddInfluxDb(this IDistributedApplicationBuilder builder,
         string name, Action<InfluxDbOptions>? configure = null)

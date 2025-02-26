@@ -100,7 +100,7 @@ For more detailed documentation, see the README files in each package directory:
 
 ## Examples
 
-See the [examples](./examples) directory for sample applications demonstrating how to use these libraries.
+See the [samples](./samples) directory for sample applications demonstrating how to use these libraries.
 
 ## Contributing
 
