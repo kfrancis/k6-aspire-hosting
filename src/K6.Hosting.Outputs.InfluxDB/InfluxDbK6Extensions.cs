@@ -1,4 +1,4 @@
-﻿using Aspire.Hosting;
+using Aspire.Hosting;
 using Aspire.Hosting.ApplicationModel;
 using K6.Hosting.Core;
 
@@ -55,12 +55,16 @@ public static class InfluxDbK6Extensions
     /// </returns>
     public static IResourceBuilder<K6Resource> WithInfluxDbOutput(
         this IResourceBuilder<K6Resource> builder,
-        InfluxDbOptions? options = null)
+        IResourceBuilder<InfluxDbResource> influxDbResource)
     {
-        options ??= new InfluxDbOptions();
-
-        var provider = new InfluxDbOutputProvider(options);
+        var provider = new InfluxDbOutputProvider(new InfluxDbOptions());
         builder.Resource.OutputProviders.Add(provider);
+
+        // Need to set the out influxdb output
+        var endpointReference = influxDbResource.GetEndpoint(InfluxDbResource.PrimaryEndpointName);
+        var influxDbUrl = $"influxdb=http://influxdb:{endpointReference.TargetPort}/k6";
+        builder.WithReference(influxDbResource);
+        builder.WithEnvironment("K6_OUT", influxDbUrl);
 
         return builder;
     }

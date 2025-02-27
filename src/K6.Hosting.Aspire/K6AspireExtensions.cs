@@ -1,4 +1,4 @@
-﻿using Aspire.Hosting;
+using Aspire.Hosting;
 using Aspire.Hosting.ApplicationModel;
 using K6.Hosting.Core;
 
@@ -106,6 +106,7 @@ public static class K6AspireExtensions
         // Automatically add the API URL as an environment variable APP_HOST
         // Add environment variables for k6 script to use
         builder.WithEnvironment("APP_HOST", endpointAnnotation.TargetHost + $":{endpointAnnotation.Port}");
+        builder.WithEnvironment("APP_HOST2", "host.docker.internal" + $":{endpointAnnotation.Port}");
         builder.WithEnvironment("APP_ENDPOINT_SCHEME", endpointAnnotation.UriScheme);
 
         return builder;

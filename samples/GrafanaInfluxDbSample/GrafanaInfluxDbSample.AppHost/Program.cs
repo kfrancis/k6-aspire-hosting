@@ -15,10 +15,12 @@ var k6 = builder.AddK6("k6", options =>
     })
     .WithReference(influxDb).WaitFor(influxDb)
     .WithApiEndpoint(api)
-    .WithInfluxDbOutput()
-    .WithGrafanaDashboard(options => {
+    .WithInfluxDbOutput(influxDb)
+    .WithGrafanaDashboard(options =>
+    {
         options.DashboardsPath = "./dashboards";
+        options.DashboardConfigPath = "./grafana-dashboard.yaml";
     })
-    .WithGrafanaInfluxDbDatasource(influxDb, "./grafana-datasource.yaml"); ;
+    .WithGrafanaInfluxDbDatasource(influxDb, "./grafana-datasource.yaml");
 
 builder.Build().Run();
