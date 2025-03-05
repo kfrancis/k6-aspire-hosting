@@ -1,4 +1,4 @@
-﻿using Aspire.Hosting.ApplicationModel;
+using Aspire.Hosting.ApplicationModel;
 using K6.Hosting.Core;
 
 namespace K6.Hosting.Outputs.Grafana;
