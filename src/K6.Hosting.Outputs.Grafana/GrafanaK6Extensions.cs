@@ -74,7 +74,7 @@ public static class GrafanaK6Extensions
         builder.Resource.OutputProviders.Add(provider);
 
         // Configure immediately
-        provider.ConfigureAsync(builder.Resource, builder).GetAwaiter().GetResult();
+        provider.Configure(builder.Resource, builder);
 
         return builder;
     }

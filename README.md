@@ -12,12 +12,13 @@ This repository contains a collection of libraries designed to seamlessly integr
 
 ## Packages
 
-| Package | Description | NuGet |
-| ------- | ----------- | ----- |
-| [CSS.K6.Hosting.Core](./src/K6.Hosting.Core) | Core components for k6 integration | [![NuGet](https://img.shields.io/nuget/v/CSS.K6.Hosting.Core.svg)](https://www.nuget.org/packages/CSS.K6.Hosting.Core) |
-| [CSS.K6.Hosting.Aspire](./src/K6.Hosting.Aspire) | Main integration for k6 in Aspire | [![NuGet](https://img.shields.io/nuget/v/CSS.K6.Hosting.Aspire.svg)](https://www.nuget.org/packages/CSS.K6.Hosting.Aspire) |
-| [CSS.K6.Hosting.Outputs.Grafana](./src/K6.Hosting.Outputs.Grafana) | Grafana dashboards for visualizing metrics | [![NuGet](https://img.shields.io/nuget/v/CSS.K6.Hosting.Outputs.Grafana.svg)](https://www.nuget.org/packages/CSS.K6.Hosting.Outputs.Grafana) |
-| [CSS.K6.Hosting.Outputs.InfluxDB](./src/K6.Hosting.Outputs.InfluxDB) | InfluxDB support for storing metrics | [![NuGet](https://img.shields.io/nuget/v/CSS.K6.Hosting.Outputs.InfluxDB.svg)](https://www.nuget.org/packages/CSS.K6.Hosting.Outputs.InfluxDB) |
+| Package | Description | NuGet | Status |
+| ------- | ----------- | ----- | ------ |
+| [CSS.K6.Hosting.Core](./src/K6.Hosting.Core) | Core components for k6 integration | [![NuGet](https://img.shields.io/nuget/v/CSS.K6.Hosting.Core.svg)](https://www.nuget.org/packages/CSS.K6.Hosting.Core) | Functional |
+| [CSS.K6.Hosting.Aspire](./src/K6.Hosting.Aspire) | Main integration for k6 in Aspire | [![NuGet](https://img.shields.io/nuget/v/CSS.K6.Hosting.Aspire.svg)](https://www.nuget.org/packages/CSS.K6.Hosting.Aspire) | Functional |
+| [CSS.K6.Hosting.Outputs.Grafana](./src/K6.Hosting.Outputs.Grafana) | Grafana dashboards for visualizing metrics | [![NuGet](https://img.shields.io/nuget/v/CSS.K6.Hosting.Outputs.Grafana.svg)](https://www.nuget.org/packages/CSS.K6.Hosting.Outputs.Grafana) | Functional |
+| [CSS.K6.Hosting.Outputs.InfluxDB](./src/K6.Hosting.Outputs.InfluxDB) | InfluxDB support for storing metrics | [![NuGet](https://img.shields.io/nuget/v/CSS.K6.Hosting.Outputs.InfluxDB.svg)](https://www.nuget.org/packages/CSS.K6.Hosting.Outputs.InfluxDB) | Functional |
+| [CSS.K6.Hosting.Outputs.Aspire](./src/K6.Hosting.Outputs.InfluxDB) | Aspire support for storing metrics | [![NuGet](https://img.shields.io/nuget/v/CSS.K6.Hosting.Outputs.Aspire.svg)](https://www.nuget.org/packages/CSS.K6.Hosting.Outputs.Aspire) | WIP |
 
 ## Quick Start
 
@@ -100,6 +101,7 @@ For more detailed documentation, see the README files in each package directory:
 - [K6.Hosting.Aspire](./src/K6.Hosting.Aspire/README.md)
 - [K6.Hosting.Outputs.Grafana](./src/K6.Hosting.Outputs.Grafana/README.md)
 - [K6.Hosting.Outputs.InfluxDB](./src/K6.Hosting.Outputs.InfluxDB/README.md)
+- [K6.Hosting.Outputs.InfluxDB](./src/K6.Hosting.Outputs.Aspire/README.md)
 
 ## Examples
 

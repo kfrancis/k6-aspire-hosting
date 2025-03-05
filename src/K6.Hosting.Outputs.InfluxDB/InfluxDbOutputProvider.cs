@@ -1,4 +1,4 @@
-﻿using Aspire.Hosting;
+using Aspire.Hosting;
 using Aspire.Hosting.ApplicationModel;
 using K6.Hosting.Core;
 
@@ -117,7 +117,7 @@ public class InfluxDbOutputProvider : IK6OutputProvider, IK6DataSourceProvider
     /// <exception cref="InvalidOperationException">
     ///     Thrown when the InfluxDB resource is not created.
     /// </exception>
-    public Task ConfigureAsync(K6Resource k6Resource, IResourceBuilder<K6Resource> builder)
+    public void Configure(K6Resource k6Resource, IResourceBuilder<K6Resource> builder)
     {
         if (_influxDbResource == null)
         {
@@ -129,7 +129,5 @@ public class InfluxDbOutputProvider : IK6OutputProvider, IK6DataSourceProvider
 
         // Set environment variables
         builder.WithEnvironment("K6_OUT", GetOutputArguments());
-
-        return Task.CompletedTask;
     }
 }

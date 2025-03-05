@@ -48,8 +48,8 @@ public static class InfluxDbK6Extensions
     /// <param name="builder">
     ///     The <see cref="IResourceBuilder{K6Resource}" /> to which the InfluxDB output will be added.
     /// </param>
-    /// <param name="options">
-    ///     The options to configure the InfluxDB output.
+    /// <param name="influxDbResource">
+    ///    The InfluxDB container resource to use for output.
     /// </param>
     /// <returns>
     ///     The <see cref="IResourceBuilder{K6Resource}" /> with the InfluxDB output added.

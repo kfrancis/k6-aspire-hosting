@@ -41,5 +41,5 @@ public interface IK6OutputProvider
     /// <returns>
     ///     A <see cref="Task" /> representing the asynchronous operation.
     /// </returns>
-    Task ConfigureAsync(K6Resource k6Resource, IResourceBuilder<K6Resource> builder);
+    void Configure(K6Resource k6Resource, IResourceBuilder<K6Resource> builder);
 }

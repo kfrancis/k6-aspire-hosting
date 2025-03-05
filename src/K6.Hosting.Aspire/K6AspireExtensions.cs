@@ -30,7 +30,7 @@ public static class K6AspireExtensions
             .WithImageTag(options.ImageConfig.Tag)
             .WithEnvironment("K6_INSECURE_SKIP_TLS_VERIFY", "true")
             .WithEndpoint(0, K6Port, name: "k6-api")
-            .WithContainerRuntimeArgs("--add-host=localhost:host-gateway");
+            .WithContainerRuntimeArgs("--add-host=host.docker.internal:host-gateway");
     }
 
     /// <summary>

@@ -99,7 +99,7 @@ public class GrafanaOutputProvider : IK6OutputProvider
     /// <exception cref="InvalidOperationException">
     ///     Thrown when the Grafana resource has not been created.
     /// </exception>
-    public Task ConfigureAsync(K6Resource k6Resource, IResourceBuilder<K6Resource> builder)
+    public void Configure(K6Resource k6Resource, IResourceBuilder<K6Resource> builder)
     {
         if (_grafanaResource == null)
         {
@@ -108,8 +108,6 @@ public class GrafanaOutputProvider : IK6OutputProvider
 
         // Link k6 and Grafana
         builder.WithReference(_grafanaResource);
-
-        return Task.CompletedTask;
     }
 
     /// <summary>

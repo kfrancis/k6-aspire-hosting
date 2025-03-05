@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <Sdk Name="Aspire.AppHost.Sdk" Version="9.0.0" />
 
@@ -16,8 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\K6.Hosting.Aspire\K6.Hosting.Aspire.csproj" IsAspireProjectResource="false" />
     <ProjectReference Include="..\BasicK6Sample.ApiService\BasicK6Sample.ApiService.csproj" />
+    <ProjectReference Include="..\..\..\src\K6.Hosting.Aspire\K6.Hosting.Aspire.csproj" IsAspireProjectResource="false" />
+    <ProjectReference Include="..\..\..\src\K6.Hosting.Outputs.Aspire\K6.Hosting.Outputs.Aspire.csproj" IsAspireProjectResource="false" />
     <ProjectReference Include="..\BasicK6Sample.ServiceDefaults\BasicK6Sample.ServiceDefaults.csproj" IsAspireProjectResource="false" />
   </ItemGroup>
 
