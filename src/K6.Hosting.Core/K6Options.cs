@@ -1,4 +1,4 @@
-﻿namespace K6.Hosting.Core;
+namespace K6.Hosting.Core;
 
 /// <summary>
 ///     Represents the options for a k6 resource.
