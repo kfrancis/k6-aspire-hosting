@@ -27,33 +27,36 @@ This repository contains a collection of libraries designed to seamlessly integr
 dotnet add package CSS.K6.Hosting.Aspire
 ```
 
-For visualization with Grafana:
-
-```bash
-dotnet add package CSS.K6.Hosting.Outputs.Grafana
-```
-
-For metrics storage with InfluxDB:
-
-```bash
-dotnet add package CSS.K6.Hosting.Outputs.InfluxDB
-```
-
 ### 2. Add k6 to your Aspire application
 
 Create a k6 test script file in your project (e.g., `scripts/load-test.js`):
 
 ```javascript
-import http from 'k6/http';
-import { sleep } from 'k6';
+import http from "k6/http";
+import { check, sleep } from "k6";
 
-export default function() {
-  http.get('http://api/weatherforecast');
-  sleep(1);
+export default function () {
+
+    // Get API information from environment
+    const apiHost = __ENV.APP_HOST;
+    const apiScheme = __ENV.APP_ENDPOINT_SCHEME;
+
+    // Construct the base URL
+    const baseUrl = `${apiScheme}://${apiHost}`;
+
+    console.log(`Testing API at: ${baseUrl}`);
+
+    const response = http.get(`${baseUrl}/weatherforecast`);
+
+    check(response, {
+        'status is 200': (r) => r.status === 200
+    });
+
+    sleep(10);
 }
 ```
 
-Add k6 to your Aspire application:
+Add k6 to your Aspire host application:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -62,18 +65,18 @@ var builder = DistributedApplication.CreateBuilder(args);
 var apiProject = builder.AddProject<Projects.MyApi>("api");
 
 // Add k6 for load testing
-builder.AddK6("load-testing", options => 
-{
-    options.ScriptDirectory = "scripts";
-    options.ScriptFileName = "load-test.js";
-})
-.WithApiEndpoint(apiProject)
-.WithInfluxDbOutput()
-.WithGrafanaDashboard();
+builder.AddK6("k6")
+    .WithScript("./scripts/test.js")
+    .WithApiEndpoint(api)
+    .WaitFor(api);
 
-var app = builder.Build();
-await app.RunAsync();
+await builder.Build().RunAsync();
 ```
+
+Then simply run k6 on the Aspire dashboard:
+
+![Current progress](./docs/basicK6.jpeg "Aspire Dashboard with K6")
+
 
 ## Features
 
@@ -101,6 +104,18 @@ For more detailed documentation, see the README files in each package directory:
 ## Examples
 
 See the [samples](./samples) directory for sample applications demonstrating how to use these libraries.
+
+### For visualization with Grafana:
+
+```bash
+dotnet add package CSS.K6.Hosting.Outputs.Grafana
+```
+
+### For metrics storage with InfluxDB:
+
+```bash
+dotnet add package CSS.K6.Hosting.Outputs.InfluxDB
+```
 
 ## Contributing
 

@@ -16,30 +16,10 @@ public static class K6AspireExtensions
     ///     added.
     /// </param>
     /// <param name="name">The name of the k6 container resource.</param>
-    /// <param name="configure"></param>
     /// <returns>A reference to the <see cref="IResourceBuilder{K6Resource}" /> for further resource configuration.</returns>
-    public static IResourceBuilder<K6Resource> AddK6(this IDistributedApplicationBuilder builder, string name,
-        Action<K6Options>? configure = null)
+    public static IResourceBuilder<K6Resource> AddK6(this IDistributedApplicationBuilder builder, string name)
     {
         var options = new K6Options();
-
-        // Allow caller to configure
-        configure?.Invoke(options);
-
-        // Make sure we have script info
-        if (string.IsNullOrWhiteSpace(options.ScriptDirectory))
-        {
-            throw new ArgumentException("ScriptDirectory must be provided.", nameof(options.ScriptDirectory));
-        }
-
-        if (string.IsNullOrWhiteSpace(options.ScriptFileName))
-        {
-            throw new ArgumentException("ScriptFileName must be provided.", nameof(options.ScriptFileName));
-        }
-
-        // Convert to absolute paths
-        var scriptDir = Path.GetFullPath(options.ScriptDirectory) ?? "";
-        var scriptFileName = Path.GetFileName(options.ScriptFileName);
 
         var resource = new K6Resource(name, options);
 
@@ -50,7 +30,37 @@ public static class K6AspireExtensions
             .WithImageTag(options.ImageConfig.Tag)
             .WithEnvironment("K6_INSECURE_SKIP_TLS_VERIFY", "true")
             .WithEndpoint(0, K6Port, name: "k6-api")
-            .WithBindMount(scriptDir, "/scripts")
+            .WithContainerRuntimeArgs("--add-host=localhost:host-gateway");
+    }
+
+    /// <summary>
+    ///     Configures the k6 resource with a script file.
+    /// </summary>
+    /// <param name="builder">
+    ///     The <see cref="IResourceBuilder{K6Resource}" /> to configure with a script.
+    /// </param>
+    /// <param name="scriptPath">
+    ///     The path to the script file. Can be absolute or relative.
+    /// </param>
+    /// <returns>A reference to the <see cref="IResourceBuilder{K6Resource}" /> for further resource configuration.</returns>
+    public static IResourceBuilder<K6Resource> WithScript(this IResourceBuilder<K6Resource> builder, string scriptPath)
+    {
+        var scriptFileInfo = new FileInfo(scriptPath);
+        if (!scriptFileInfo.Exists)
+        {
+            throw new FileNotFoundException($"Script file not found: {scriptPath}");
+        }
+
+        var scriptDirectory = scriptFileInfo.Directory?.FullName ?? "";
+        var scriptFileName = scriptFileInfo.Name;
+
+        // Update the options in the resource
+        builder.Resource.Options.ScriptDirectory = scriptDirectory;
+        builder.Resource.Options.ScriptFileName = scriptFileName;
+
+        // Update the container configuration
+        return builder
+            .WithBindMount(scriptDirectory, "/scripts")
             .WithArgs("run", $"/scripts/{scriptFileName}")
             .WithExplicitStart();
     }
@@ -85,13 +95,10 @@ public static class K6AspireExtensions
                 "Make sure the API has at least one endpoint defined.");
         }
 
-        // Try to find an HTTPS endpoint first, then HTTP, then any endpoint
+        // Specifically select the HTTPs endpoint - CHANGED FROM ORIGINAL
         var endpointAnnotation = endpointAnnotations
                                      .FirstOrDefault(e =>
                                          e.UriScheme.Equals("https", StringComparison.OrdinalIgnoreCase))
-                                 ?? endpointAnnotations
-                                     .FirstOrDefault(e =>
-                                         e.UriScheme.Equals("http", StringComparison.OrdinalIgnoreCase))
                                  ?? endpointAnnotations.First();
 
         // Get the endpoint reference
@@ -105,8 +112,7 @@ public static class K6AspireExtensions
 
         // Automatically add the API URL as an environment variable APP_HOST
         // Add environment variables for k6 script to use
-        builder.WithEnvironment("APP_HOST", endpointAnnotation.TargetHost + $":{endpointAnnotation.Port}");
-        builder.WithEnvironment("APP_HOST2", "host.docker.internal" + $":{endpointAnnotation.Port}");
+        builder.WithEnvironment("APP_HOST", "host.docker.internal" + $":{endpointAnnotation.Port}");
         builder.WithEnvironment("APP_ENDPOINT_SCHEME", endpointAnnotation.UriScheme);
 
         return builder;

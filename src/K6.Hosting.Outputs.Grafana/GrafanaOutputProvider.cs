@@ -1,4 +1,4 @@
-﻿using Aspire.Hosting;
+using Aspire.Hosting;
 using Aspire.Hosting.ApplicationModel;
 using K6.Hosting.Core;
 using K6.Hosting.Outputs.Grafana.Resources;
@@ -62,7 +62,8 @@ public class GrafanaOutputProvider : IK6OutputProvider
             .WithEnvironment("GF_AUTH_ANONYMOUS_ENABLED", "true")
             .WithEnvironment("GF_AUTH_BASIC_ENABLED", "false")
             .WithEnvironment("GF_SERVER_SERVE_FROM_SUB_PATH", "true")
-            .WithEndpoint(0, 3000, name: "http", scheme: "http");
+            .WithEndpoint(0, 3000, name: "http", scheme: "http")
+            .WithContainerRuntimeArgs("--network-alias=grafana");
 
         // Add dashboard mounting if specified
         if (!string.IsNullOrEmpty(_options.DashboardsPath))
