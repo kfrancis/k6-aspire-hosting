@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+    <EnablePackageValidation>true</EnablePackageValidation>
+    <WarningsAsErrors>Nullable</WarningsAsErrors>
+    <AssemblyName>CSS.K6.Hosting.Outputs.Prometheus</AssemblyName>
+    <Authors>kfrancis</Authors>
+    <Company>Clinical Support Systems</Company>
+    <PackageId>CSS.K6.Hosting.Outputs.Prometheus</PackageId>
+    <PackageTags>k6;load-testing;Prometheus;opentelemetry;metrics;performance-testing</PackageTags>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryType>git</RepositoryType>
+    <Description>Prometheus output provider for exporting k6 load test metrics.</Description>
+    <RepositoryUrl>https://github.com/kfrancis/k6-aspire-hosting</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/kfrancis/k6-aspire-hosting</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\K6.Hosting.Core\K6.Hosting.Core.csproj" />
+  </ItemGroup>
+
+</Project>

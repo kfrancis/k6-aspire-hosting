@@ -1,0 +1,40 @@
+# otelconfig.yaml for k6-aspire integration
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317  # Standard gRPC port for OTLP
+      http:
+        endpoint: 0.0.0.0:4318  # Standard HTTP port for OTLP
+
+processors:
+  batch:
+    # Default settings are fine for most cases
+    # Add timeout_millis: 5000 if you want more frequent exports
+
+exporters:
+  debug:
+    verbosity: detailed  # Helpful for troubleshooting
+  
+  otlp/aspire:
+    endpoint: ${env:ASPIRE_ENDPOINT}  # This will be automatically set by Aspire
+    tls:
+      insecure: true
+      insecure_skip_verify: true  # Needed for development environments
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [otlp/aspire, debug]
+    
+    metrics:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [otlp/aspire, debug]
+    
+    logs:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [otlp/aspire, debug]

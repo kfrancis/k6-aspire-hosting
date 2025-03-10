@@ -61,37 +61,22 @@ public class AspireOutputProvider : IK6OutputProvider
     /// </returns>
     public void Configure(K6Resource k6Resource, IResourceBuilder<K6Resource> builder)
     {
-        // Get the actual OTLP endpoint from the environment if possible
-        var otlpEndpointFull = Environment.GetEnvironmentVariable("OTEL_EXPORTER_OTLP_ENDPOINT")
-                               ?? _options.OtlpEndpoint;
-
-        // Parse the endpoint to extract just host:port for gRPC
-        var grpcEndpoint = Uri.TryCreate(otlpEndpointFull, UriKind.Absolute, out var uri)
-            ? $"{uri.Host}:{uri.Port}"
-            : "host.docker.internal:4317";
-
-        builder.WithEnvironment("K6_OTEL_METRIC_PREFIX", "k6");
-
-        // Configure k6 to use the OTLP endpoint
+        // Try multiple possible host addresses with explicit port resolution
         builder.WithEnvironment("K6_OUT", "experimental-opentelemetry");
-
-        // Add additional environment variables for more reliable connectivity
-        builder.WithEnvironment("K6_OTLP_TIMEOUT", _options.OtlpTimeout ?? "20s");
-
-        // Set the exporter type (gRPC is usually used for OTLP)
         builder.WithEnvironment("K6_OTEL_EXPORTER_TYPE", "grpc");
 
-        // Configure the gRPC endpoint for OpenTelemetry
-        builder.WithEnvironment("K6_OTEL_GRPC_EXPORTER_ENDPOINT", grpcEndpoint);
+        // Don't use host.docker.internal directly in the endpoint
+        builder.WithEnvironment("K6_OTEL_GRPC_EXPORTER_ENDPOINT", "127.0.0.1:4317");
 
-        // Since we're using HTTP and not HTTPS, disable security
+        // Essential for making OpenTelemetry work with unencrypted connections
         builder.WithEnvironment("K6_OTEL_GRPC_EXPORTER_INSECURE", "true");
 
-        // Add reasonable timeout values
+        // Try multiple host resolution approaches
+        builder.WithContainerRuntimeArgs("--add-host=host.docker.internal:host-gateway");
+
+        // Increase timeouts to give more time for connection attempts
+        builder.WithEnvironment("K6_OTLP_TIMEOUT", "30s");
         builder.WithEnvironment("K6_OTEL_FLUSH_INTERVAL", "5s");
         builder.WithEnvironment("K6_OTEL_EXPORT_INTERVAL", "5s");
-
-        // Ensure we can connect to the host
-        builder.WithContainerRuntimeArgs("--add-host=host.docker.internal:host-gateway");
     }
 }

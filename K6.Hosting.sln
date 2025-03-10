@@ -46,6 +46,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrafanaInfluxDbSample.Servi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "K6.Hosting.Outputs.Aspire", "src\K6.Hosting.Outputs.Aspire\K6.Hosting.Outputs.Aspire.csproj", "{68CCB7BB-156B-4319-816B-086FA1B9DD7E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "K6.Hosting.Outputs.Prometheus", "src\K6.Hosting.Outputs.Prometheus\K6.Hosting.Outputs.Prometheus.csproj", "{09F9DC08-6854-4834-9EED-C22710251A58}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -96,6 +98,10 @@ Global
 		{68CCB7BB-156B-4319-816B-086FA1B9DD7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68CCB7BB-156B-4319-816B-086FA1B9DD7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68CCB7BB-156B-4319-816B-086FA1B9DD7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09F9DC08-6854-4834-9EED-C22710251A58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09F9DC08-6854-4834-9EED-C22710251A58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09F9DC08-6854-4834-9EED-C22710251A58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09F9DC08-6854-4834-9EED-C22710251A58}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -114,6 +120,7 @@ Global
 		{4A6A678B-C94B-4678-832B-D5CC9A07A017} = {78B644BF-6567-462B-AA86-8D91CA1A4550}
 		{B7D2886B-EC86-4ED7-B228-B78080E20C65} = {78B644BF-6567-462B-AA86-8D91CA1A4550}
 		{68CCB7BB-156B-4319-816B-086FA1B9DD7E} = {F818D4B7-F200-4EF6-8A5D-4AB2E6AD222D}
+		{09F9DC08-6854-4834-9EED-C22710251A58} = {F818D4B7-F200-4EF6-8A5D-4AB2E6AD222D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {352B1517-5BBD-4055-801E-66B50FA2620B}
