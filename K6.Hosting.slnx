@@ -1,0 +1,32 @@
+<Solution>
+  <Folder Name="/hosting/">
+    <Project Path="src/K6.Hosting.Aspire/K6.Hosting.Aspire.csproj" />
+    <Project Path="src/K6.Hosting.Core/K6.Hosting.Core.csproj" />
+  </Folder>
+  <Folder Name="/output/">
+    <Project Path="src/K6.Hosting.Outputs.Aspire/K6.Hosting.Outputs.Aspire.csproj" />
+    <Project Path="src/K6.Hosting.Outputs.Grafana/K6.Hosting.Outputs.Grafana.csproj" />
+    <Project Path="src/K6.Hosting.Outputs.InfluxDB/K6.Hosting.Outputs.InfluxDB.csproj" />
+    <Project Path="src/K6.Hosting.Outputs.Prometheus/K6.Hosting.Outputs.Prometheus.csproj" />
+  </Folder>
+  <Folder Name="/samples/" />
+  <Folder Name="/samples/basic/">
+    <Project Path="samples/BasicK6Sample/BasicK6Sample.ApiService/BasicK6Sample.ApiService.csproj" />
+    <Project Path="samples/BasicK6Sample/BasicK6Sample.AppHost/BasicK6Sample.AppHost.csproj" />
+    <Project Path="samples/BasicK6Sample/BasicK6Sample.ServiceDefaults/BasicK6Sample.ServiceDefaults.csproj" />
+  </Folder>
+  <Folder Name="/samples/grafana-influxDb/">
+    <Project Path="samples/GrafanaInfluxDbSample/GrafanaInfluxDbSample.ApiService/GrafanaInfluxDbSample.ApiService.csproj" />
+    <Project Path="samples/GrafanaInfluxDbSample/GrafanaInfluxDbSample.AppHost/GrafanaInfluxDbSample.AppHost.csproj" />
+    <Project Path="samples/GrafanaInfluxDbSample/GrafanaInfluxDbSample.ServiceDefaults/GrafanaInfluxDbSample.ServiceDefaults.csproj" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".gitignore" />
+    <File Path="common.props" />
+    <File Path="docs/basicK6.jpeg" />
+    <File Path="global.json" />
+    <File Path="LICENSE" />
+    <File Path="README.md" />
+  </Folder>
+</Solution>

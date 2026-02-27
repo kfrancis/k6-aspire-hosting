@@ -38,8 +38,7 @@ public static class InfluxDbK6Extensions
             .WithImageRegistry(options.ImageConfig.Registry)
             .WithImageTag(options.ImageConfig.Tag)
             .WithEnvironment("INFLUXDB_DB", "k6")
-            .WithHttpEndpoint(0, InfluxDbPort, InfluxDbResource.PrimaryEndpointName)
-            .WithContainerRuntimeArgs($"--network-alias={name}");
+            .WithHttpEndpoint(0, InfluxDbPort, InfluxDbResource.PrimaryEndpointName);
     }
 
     /// <summary>

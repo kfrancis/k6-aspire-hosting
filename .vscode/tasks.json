@@ -1,0 +1,44 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "restore: solution",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "restore",
+        "${workspaceFolder}/K6.Hosting.sln"
+      ],
+      "group": "build",
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "run: basic sample apphost",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "run",
+        "--project",
+        "${workspaceFolder}/samples/BasicK6Sample/BasicK6Sample.AppHost/BasicK6Sample.AppHost.csproj"
+      ],
+      "dependsOn": "restore: solution",
+      "dependsOrder": "sequence",
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "run: grafana+influx sample apphost",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "run",
+        "--project",
+        "${workspaceFolder}/samples/GrafanaInfluxDbSample/GrafanaInfluxDbSample.AppHost/GrafanaInfluxDbSample.AppHost.csproj"
+      ],
+      "dependsOn": "restore: solution",
+      "dependsOrder": "sequence",
+      "isBackground": true,
+      "problemMatcher": []
+    }
+  ]
+}
