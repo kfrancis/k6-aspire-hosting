@@ -66,7 +66,7 @@
           "datasource": "k6influxdb",
           "fill": 1,
           "id": 1,
-          "interval": ">1s",
+          "interval": "1s",
           "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -396,7 +396,7 @@
           "datasource": "k6influxdb",
           "fill": 1,
           "id": 10,
-          "interval": ">1s",
+          "interval": "1s",
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -1183,7 +1183,7 @@
           "fill": 1,
           "height": "250px",
           "id": 5,
-          "interval": ">1s",
+          "interval": "1s",
           "legend": {
             "alignAsTable": false,
             "avg": false,
@@ -1427,7 +1427,7 @@
           "height": "250px",
           "highlightCards": true,
           "id": 8,
-          "interval": ">1s",
+          "interval": "1s",
           "links": [],
           "span": 6,
           "targets": [

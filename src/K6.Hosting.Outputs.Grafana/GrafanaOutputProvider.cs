@@ -151,7 +151,7 @@ public class GrafanaOutputProvider : IK6OutputProvider
         // rather than trying to resolve it immediately
         var config = dataSourceProvider.GenerateGrafanaDataSourceConfig(
             grafanaEndpoint.Property(EndpointProperty.Host).ToString() ?? "localhost",
-            int.Parse(grafanaEndpoint.Property(EndpointProperty.Port)?.ToString() ?? "3000")
+            int.Parse(grafanaEndpoint.Property(EndpointProperty.Port).ToString() ?? "3000")
         );
 
         File.WriteAllText(configFile, config);
