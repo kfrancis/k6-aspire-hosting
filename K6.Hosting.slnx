@@ -22,6 +22,7 @@
   </Folder>
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
+    <File Path=".github/workflows/publish.yml" />
     <File Path=".gitignore" />
     <File Path="common.props" />
     <File Path="docs/basicK6.jpeg" />
