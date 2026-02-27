@@ -1,19 +1,30 @@
 import http from "k6/http";
 import { check, sleep } from "k6";
 
-export const options = {
-    stages: [
-        { duration: "20s", target: 5 },
-        { duration: "40s", target: 20 },
-        { duration: "30s", target: 10 },
-        { duration: "20s", target: 0 }
-    ],
-    thresholds: {
-        http_req_failed: ["rate<0.25"],
-        http_req_duration: ["p(95)<2500"],
-        checks: ["rate>0.7"]
+const isSmoke = (__ENV.TEST_PROFILE || "").toLowerCase() === "smoke";
+
+export const options = isSmoke
+    ? {
+        vus: 1,
+        iterations: 5,
+        thresholds: {
+            http_req_failed: ["rate<0.05"],
+            checks: ["rate>0.95"]
+        }
     }
-};
+    : {
+        stages: [
+            { duration: "20s", target: 5 },
+            { duration: "40s", target: 20 },
+            { duration: "30s", target: 10 },
+            { duration: "20s", target: 0 }
+        ],
+        thresholds: {
+            http_req_failed: ["rate<0.25"],
+            http_req_duration: ["p(95)<2500"],
+            checks: ["rate>0.7"]
+        }
+    };
 
 function randomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -63,5 +74,5 @@ export default function () {
         "flaky status is 200 or 503": (r) => r.status === 200 || r.status === 503
     });
 
-    sleep(Math.random() * 1.5 + 0.2);
+    sleep(isSmoke ? 0.2 : (Math.random() * 1.5 + 0.2));
 }

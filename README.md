@@ -1,6 +1,6 @@
-# k6-aspire-hosting
+﻿# k6-aspire-hosting
 
-A suite of .NET libraries for integrating Grafana k6 load testing into .NET Aspire applications.
+Add production-like load testing to your .NET Aspire apps in minutes using Grafana k6, with optional InfluxDB + Grafana observability.
 
 [![NuGet](https://img.shields.io/nuget/v/CSS.K6.Hosting.Aspire.svg)](https://www.nuget.org/packages/CSS.K6.Hosting.Aspire)
 [![Build Status](https://github.com/kfrancis/k6-aspire-hosting/workflows/publish/badge.svg)](https://github.com/kfrancis/k6-aspire-hosting/actions)
@@ -18,17 +18,22 @@ This repository contains a collection of libraries designed to seamlessly integr
 | [CSS.K6.Hosting.Aspire](./src/K6.Hosting.Aspire) | Main integration for k6 in Aspire | [![NuGet](https://img.shields.io/nuget/v/CSS.K6.Hosting.Aspire.svg)](https://www.nuget.org/packages/CSS.K6.Hosting.Aspire) | Functional |
 | [CSS.K6.Hosting.Outputs.Grafana](./src/K6.Hosting.Outputs.Grafana) | Grafana dashboards for visualizing metrics | [![NuGet](https://img.shields.io/nuget/v/CSS.K6.Hosting.Outputs.Grafana.svg)](https://www.nuget.org/packages/CSS.K6.Hosting.Outputs.Grafana) | Functional |
 | [CSS.K6.Hosting.Outputs.InfluxDB](./src/K6.Hosting.Outputs.InfluxDB) | InfluxDB support for storing metrics | [![NuGet](https://img.shields.io/nuget/v/CSS.K6.Hosting.Outputs.InfluxDB.svg)](https://www.nuget.org/packages/CSS.K6.Hosting.Outputs.InfluxDB) | Functional |
-| [CSS.K6.Hosting.Outputs.Aspire](./src/K6.Hosting.Outputs.InfluxDB) | Aspire support for storing metrics | [![NuGet](https://img.shields.io/nuget/v/CSS.K6.Hosting.Outputs.Aspire.svg)](https://www.nuget.org/packages/CSS.K6.Hosting.Outputs.Aspire) | WIP |
+| [CSS.K6.Hosting.Outputs.Aspire](./src/K6.Hosting.Outputs.Aspire) | Aspire support for storing metrics | [![NuGet](https://img.shields.io/nuget/v/CSS.K6.Hosting.Outputs.Aspire.svg)](https://www.nuget.org/packages/CSS.K6.Hosting.Outputs.Aspire) | WIP |
 
 ## Quick Start
 
-### 1. Install the package
+### 1. Start from a sample path
+
+- **Fastest path**: run [`samples/BasicK6Sample`](./samples/BasicK6Sample)
+- **With dashboards + storage**: run [`samples/GrafanaInfluxDbSample`](./samples/GrafanaInfluxDbSample)
+
+### 2. Install the package
 
 ```bash
 dotnet add package CSS.K6.Hosting.Aspire
 ```
 
-### 2. Add k6 to your Aspire application
+### 3. Add a k6 script
 
 Create a k6 test script file in your project (e.g., `scripts/load-test.js`):
 
@@ -57,6 +62,8 @@ export default function () {
 }
 ```
 
+### 4. Wire k6 into your Aspire host
+
 Add k6 to your Aspire host application:
 
 ```csharp
@@ -67,14 +74,16 @@ var apiProject = builder.AddProject<Projects.MyApi>("api");
 
 // Add k6 for load testing
 builder.AddK6("k6")
-    .WithScript("./scripts/test.js")
-    .WithApiEndpoint(api)
-    .WaitFor(api);
+    .WithScript("./scripts/load-test.js")
+    .WithApiEndpoint(apiProject)
+    .WaitFor(apiProject);
 
 await builder.Build().RunAsync();
 ```
 
-Then simply run k6 on the Aspire dashboard:
+### 5. Run from the Aspire dashboard
+
+Start your AppHost, then run k6 from the Aspire dashboard:
 
 ![Current progress](./docs/basicK6.jpeg "Aspire Dashboard with K6")
 
@@ -101,11 +110,20 @@ For more detailed documentation, see the README files in each package directory:
 - [K6.Hosting.Aspire](./src/K6.Hosting.Aspire/README.md)
 - [K6.Hosting.Outputs.Grafana](./src/K6.Hosting.Outputs.Grafana/README.md)
 - [K6.Hosting.Outputs.InfluxDB](./src/K6.Hosting.Outputs.InfluxDB/README.md)
-- [K6.Hosting.Outputs.InfluxDB](./src/K6.Hosting.Outputs.Aspire/README.md)
+- [K6.Hosting.Outputs.Aspire](./src/K6.Hosting.Outputs.Aspire/README.md)
 
 ## Examples
 
 See the [samples](./samples) directory for sample applications demonstrating how to use these libraries.
+
+- [`samples/GrafanaInfluxDbSample`](./samples/GrafanaInfluxDbSample): includes a fast smoke profile for `scripts/test.js` using `TEST_PROFILE=smoke`.
+- To switch script files without code edits in `GrafanaInfluxDbSample.AppHost`, set `K6_SCRIPT` (default: `./scripts/test.js`).
+
+### Next steps
+
+1. Run [`BasicK6Sample`](./samples/BasicK6Sample) to validate base k6 + Aspire flow.
+2. Move to [`GrafanaInfluxDbSample`](./samples/GrafanaInfluxDbSample) for metrics persistence and dashboards.
+3. Add output packages from this README to match your target observability stack.
 
 ### For visualization with Grafana:
 
