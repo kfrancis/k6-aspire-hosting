@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "entries": [
+    { "persistent_name": "ripley", "universe": "alien", "created_at": "2026-02-27T17:42:15Z", "legacy_named": false, "status": "active" },
+    { "persistent_name": "dallas", "universe": "alien", "created_at": "2026-02-27T17:42:15Z", "legacy_named": false, "status": "active" },
+    { "persistent_name": "parker", "universe": "alien", "created_at": "2026-02-27T17:42:15Z", "legacy_named": false, "status": "active" },
+    { "persistent_name": "ash", "universe": "alien", "created_at": "2026-02-27T17:42:15Z", "legacy_named": false, "status": "active" },
+    { "persistent_name": "lambert", "universe": "alien", "created_at": "2026-02-27T17:42:15Z", "legacy_named": false, "status": "active" },
+    { "persistent_name": "bishop", "universe": "alien", "created_at": "2026-02-27T17:42:15Z", "legacy_named": false, "status": "active" },
+    { "persistent_name": "scribe", "universe": "fixed", "created_at": "2026-02-27T17:42:15Z", "legacy_named": false, "status": "active" },
+    { "persistent_name": "ralph", "universe": "fixed", "created_at": "2026-02-27T17:42:15Z", "legacy_named": false, "status": "active" }
+  ]
+}
